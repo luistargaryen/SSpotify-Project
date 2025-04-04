@@ -2,56 +2,73 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-  },
-  {
-    path: 'album',
-    loadComponent: () => import('./pages/album/album.page').then( m => m.AlbumPage)
-  },
-  {
-    path: 'artist',
-    loadComponent: () => import('./pages/artist/artist.page').then( m => m.ArtistPage)
-  },
-  {
-    path: 'genre-song',
-    loadComponent: () => import('./pages/genre-song/genre-song.page').then( m => m.GenreSongPage)
-  },
-  {
-    path: 'likes',
-    loadComponent: () => import('./pages/likes/likes.page').then( m => m.LikesPage)
-  },
-  {
-    path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
-  },
-  {
-    path: 'logout',
-    loadComponent: () => import('./pages/logout/logout.page').then( m => m.LogoutPage)
   },
   {
     path: 'main',
     loadComponent: () => import('./pages/main/main.page').then( m => m.MainPage)
   },
   {
-    path: 'playlist-item',
-    loadComponent: () => import('./pages/playlist-item/playlist-item.page').then( m => m.PlaylistItemPage)
+    path: '',
+    redirectTo: '/main',
+    pathMatch: 'full',
   },
   {
-    path: 'profile',
-    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
+    path: 'auth/login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'auth/register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
+  },
+  {
+    path: 'logout',
+    loadComponent: () => import('./pages/logout/logout.page').then( m => m.LogoutPage)
+  },
+  {
+    path: 'song/:idSong',
+    redirectTo: '/tabs/home/song/:idSong',
+  },
+  {
+    path: 'artist/:idArtist',
+    redirectTo: '/tabs/home/artist/:idArtist',
+  },
+  {
+    path: 'album/:idAlbum',
+    redirectTo: '/tabs/home/album/:idAlbum',
+  },
+  {
+    path: 'search',
+    redirectTo: '/tabs/search',
+  },
+  {
+    path: 'songGenre/:genre',
+    redirectTo: '/tabs/search/songGenre/:genre',
+  },
+  {
+    path: 'searchSong/:name',
+    redirectTo: '/tabs/search/searchSong/:name',
+  },
+  {
+    path: 'playlists',
+    redirectTo: "/tabs/playlists"
+  }, 
+  {
+    path: 'likes',
+    redirectTo: "/tabs/playlists/likes"
   },
   {
     path: 'register',
     loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
   {
-    path: 'search-song',
-    loadComponent: () => import('./pages/search-song/search-song.page').then( m => m.SearchSongPage)
+    path: 'playlist/:idPlaylist',
+    redirectTo: '/tabs/playlists/playlist/:idPlaylist'
   },
   {
-    path: 'song',
-    loadComponent: () => import('./pages/song/song.page').then( m => m.SongPage)
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
   },
   {
     path: 'upload',
