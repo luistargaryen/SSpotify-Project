@@ -1,0 +1,7 @@
+{
+  "name": "SSpotify",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
