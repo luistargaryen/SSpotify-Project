@@ -1,13 +1,47 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <label>Nombre de usuario</label>
+        <ion-input
+          placeholder=""
+          [(ngModel)]="username"
+        ></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Email</label>
+        <ion-input
+          placeholder=""
+          type="email"
+          [(ngModel)]="email"
+        ></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Contraseña</label>
+        <ion-input
+          type="password"
+          placeholder=""
+          [(ngModel)]="password"
+        >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Rol</label>
+        <ion-select [(ngModel)]="rol" interface="popover" placeholder="Selecciona un rol">
+          <ion-select-option value="usuario">Usuario normal</ion-select-option>
+          <ion-select-option value="artista">Artista</ion-select-option>
+        </ion-select>
+      </ion-row>
+
+      <ion-row>
+        <ion-button (click)="register()">
+          Registrar usuario
+        </ion-button>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
