@@ -1,3 +1,7 @@
-<p>
-  item-artist works!
-</p>
+<ion-card [id]="idArtist" (click)="goToRoute()">
+  <img alt="Silhouette of mountains" [src]="urlImage" />
+
+  <ion-card-header>
+    <ion-card-title>{{ artistName }}</ion-card-title>
+  </ion-card-header>
+</ion-card>

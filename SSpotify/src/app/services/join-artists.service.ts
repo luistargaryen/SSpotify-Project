@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Artist } from '../models/artist.model';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
+@Pipe({
+  name: 'joinArtists',
+  standalone: true
 })
-export class JoinArtistsService {
 
-  constructor() { }
+export class JoinArtistsService implements PipeTransform {
+  transform(artists: Artist[]): string { 
+    return artists.map(artist => artist.name).join(', ');
+  }
 }

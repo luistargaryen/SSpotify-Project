@@ -1,7 +1,7 @@
 export interface Artist {
-    _id?: string; 
+    id: string;
     name: string;
-    genres?: string[]; 
-    image?: string;
-    popularity: number;
+    followers: number;
+    gneres: string[];
+    urlImage: string;
 }

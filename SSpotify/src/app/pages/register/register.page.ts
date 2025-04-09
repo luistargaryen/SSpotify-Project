@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [ IonicModule, CommonModule, FormsModule, RouterLink ]
+  imports: [ IonicModule, CommonModule, FormsModule ]
 })
 export class RegisterPage implements OnInit {
   public username = '';
@@ -18,6 +19,7 @@ export class RegisterPage implements OnInit {
   public email = '';
   public rol = '';
 
+  public LoginService = new LoginService();
   constructor(public router: Router) { }
 
   ngOnInit() {
@@ -26,37 +28,39 @@ export class RegisterPage implements OnInit {
   }
 
   async register() {
-    // try {
-    //   console.log(this.username, this.password, this.email, this.rol);
-    //   if (
-    //     this.username === '' ||
-    //     this.password === '' ||
-    //     this.email === '' ||
-    //     this.rol === ''
-    //   ) {
-    //     alert('Porfavor completa todos los campos');
-    //     return;
-    //   }
+    try {
+      console.log(this.username, this.password, this.email, this.rol);
+      if (
+        this.username === '' ||
+        this.password === '' ||
+        this.email === '' ||
+        this.rol === ''
+      ) {
+        alert('Porfavor completa todos los campos');
+        return;
+      }
 
-    //   const result = (await this.loginService.sendRegisterRequest(
-    //     username: this.username,
-    //     password: this.password,
-    //     email: this.email,
-    //     rol: this.rol
-    //   )) as any;
+      const parsedData = {
+        username: this.username,
+        email: this.email,
+        rol: this.rol,
+        password: this.password,
+      };
+      const result = (await this.LoginService.sendRegisterRequest(
+        parsedData
+      )) as any;
 
-    //   console.log(result);
+      console.log(result);
 
-    //   if (!result || result?.error) {
-    //     throw new Error(`Ocurrio un error al registrarse. ${result?.error}`);
-    //   }
+      if (!result || result?.error) {
+        throw new Error(`Ocurrio un error al registrarse. ${result?.error}`);
+      }
 
-    //     alert('Vaya a su correo para activar la cuenta')
-    //   } catch (error: any) {
-    //     console.error(`Error al registrarse ${error.error.error}`);
-    //     alert(`Error al registrarse ${error.error.error}`);
-    //   } finally {
-    //   }
-    // }
+        alert('Vaya a su correo para activar la cuenta')
+      } catch (error: any) {
+        console.error(`Error al registrarse ${error.error.error}`);
+        alert(`Error al registrarse ${error.error.error}`);
+      } finally {
+      }
+    }
   }
-}

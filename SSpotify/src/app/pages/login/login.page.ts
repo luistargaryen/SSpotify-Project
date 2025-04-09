@@ -34,8 +34,8 @@ export class LoginPage implements OnInit {
       this.loaderService.show();
       alert('Iniciando sesion')
       const result = (await this.loginService.sendLoginRequest(
-        // this.username,
-        // this.password
+        this.username,
+        this.password
       )) as any;
       localStorage.setItem('token', result.token);
       this.router.navigate(['/tabs']);
