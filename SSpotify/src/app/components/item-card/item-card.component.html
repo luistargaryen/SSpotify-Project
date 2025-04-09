@@ -1,3 +1,20 @@
-<p>
-  item-card works!
-</p>
+<ion-card [id]="idSong" (click)="goToRoute()">
+  <ion-img [src]="urlImage" alt="Silhouette of mountains"></ion-img>
+
+  <ion-card-header>
+    <ion-card-title>{{ songName }}</ion-card-title>
+
+    <div>
+      @for (artist of artistName; track artist; let index = $index) {
+        @if (index <= 1) {
+          <ion-card-subtitle>{{ artist }}</ion-card-subtitle>
+        } @else {
+          @if (index == 2) {
+            <ion-card-subtitle>...</ion-card-subtitle>
+          }
+        }
+      }
+    </div>
+  </ion-card-header>
+</ion-card>
+

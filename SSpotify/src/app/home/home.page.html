@@ -1,15 +1,79 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+    <ion-grid [fixed]="true">
+      
+      <!-- Canciones -->
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <h2>Ultimas canciones</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        @for(song of songs; track song._id){
+        <ion-col size="7">
+          <item-card
+            [songName]="song.name"
+            [artistName]="song.artistNames"
+            [urlImage]="song.urlImage"
+            [idSong]="song._id"
+            redirectTo="/song"
+          />
+        </ion-col>
+        }
+      </ion-row>
+
+      <!-- Artistas -->
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <h2>Artistas del momento</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        @for(artist of artists; track artist.id){
+        <ion-col size="7">
+          <item-artist
+            [urlImage]="artist.urlImage"
+            [idArtist]="artist.id"
+            [artistName]="artist.name"
+            redirectTo="/artist"
+          />
+        </ion-col>
+        }
+      </ion-row>
+
+      <!-- Álbumes -->
+      <ion-row>
+        <ion-col size="12">
+          <ion-text>
+            <h2>Nuevos lanzamientos</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        @for(album of albums; track album.id){
+        <ion-col size="7">
+          <item-card
+            [songName]="album.name"
+            [urlImage]="album.urlImage"
+            [idSong]="album.id"
+            redirectTo="/album"
+          />
+        </ion-col>
+        }
+      </ion-row>
+
+    </ion-grid>
+  </div>
 </ion-content>
