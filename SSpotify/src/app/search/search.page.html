@@ -1,16 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Search
-    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+    [debounce]="2000"
+      (ionInput)="handleInput($event)"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Search</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <div>
+    @for(genre of genres; track genre){
+    <div (click)="redirectToGenre(genre)">
+      <ion-card [color]="getRandomColor(genre)">
+        <ion-card-header>
+          <ion-card-title>
+            {{genre.toUpperCase()}}
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    }
+  </div>
 </ion-content>
