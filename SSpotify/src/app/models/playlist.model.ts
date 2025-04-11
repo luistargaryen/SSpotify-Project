@@ -1,6 +1,9 @@
 export interface Playlist {
-    idPlaylist: string;
+    idSongs: Array<string>;
     name: string;
+    id: string;
+    _id: string;
+    description: string;
     image: string;
-    idSong: string[]; 
+    songs: Array<any>;
 }

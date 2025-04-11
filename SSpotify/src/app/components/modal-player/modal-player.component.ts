@@ -11,4 +11,17 @@ export class ModalPlayerComponent  implements OnInit {
 
   ngOnInit() {}
 
+  async canDismiss(data?: any, role?: string) {
+    return role !== 'gesture';
+  } 
+
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+  
+  cancel() {
+    this.setOpen(false);
+  } 
 }

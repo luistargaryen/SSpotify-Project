@@ -1,3 +1,69 @@
-<p>
-  music-player works!
-</p>
+@if(isShow()){
+  <ion-footer>
+    <ion-toolbar>
+      <div>
+        <ion-buttons slot="start">
+          <ion-button (click)="togglePlayPause()">
+            <ion-icon [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
+        <div (click)="OpenModal(true)">
+          <img [src]="urlImage" />
+          <div>
+            <span>Now Playing: {{ name }}</span>
+            <span>Artists: {{ artists | joinArtists }}</span>
+          </div>
+        </div>
+      </div>
+  
+      <ion-modal [isOpen]="isModalOpen">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="end">
+                <ion-button (click)="CloseModal()">X</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+  
+          <ion-content>
+            <div>
+              <img [src]="urlImage" />
+              <div>
+                <span>{{ name }}</span><br />
+                <span>By {{ artists | joinArtists }}</span>
+              </div>
+  
+              <div>
+                <progress value="0" max="100" id="audioProgressModal"></progress>
+              </div>
+  
+              <div>
+                <ion-button (click)="previousSong()">
+                  <ion-icon name="caret-back-outline"></ion-icon>
+                </ion-button>
+                <ion-button (click)="togglePlayPause()">
+                  @if(isPlaying){
+                  <ion-icon name="pause"></ion-icon>
+                  }@else{
+                  <ion-icon name="play"></ion-icon>
+                  }
+                </ion-button>
+                <ion-button (click)="nextSong()">
+                  <ion-icon name="caret-forward-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+  
+      <div>
+        <progress value="0" max="100" id="audioProgress"></progress>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+  }@else{
+  <div></div>
+  }
