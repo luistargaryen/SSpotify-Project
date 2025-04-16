@@ -1,13 +1,63 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>playlist-item</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">playlist-item</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <!-- <ion-img [src]="imageBase"/> -->
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="8">
+          <h2>{{PlaylistItem.name.toUpperCase()}}</h2>
+          <h4>{{PlaylistItem.description.toLocaleLowerCase()}}</h4>
+        </ion-col>
+
+        <ion-col size="4">
+          <play-button (click)="playPlaylist()" />
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <div>
+              <h4>
+                Número de Canciones:
+                <span>{{PlaylistItem.idSongs.length}}</span>
+              </h4>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Canciones</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              @for(song of PlaylistItem.songs; track song.id){
+              <ion-item [id]="song.id" (click)="goToSong(song.id)">
+                <ion-thumbnail slot="start">
+                  <img [src]="song.urlImage"/>
+                </ion-thumbnail>
+                <ion-label>{{song.name}}</ion-label>
+              </ion-item>
+              }
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
