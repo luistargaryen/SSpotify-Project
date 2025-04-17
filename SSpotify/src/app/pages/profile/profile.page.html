@@ -5,9 +5,82 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <h1>Perfil del usuario</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <label>Nombre de usuario</label>
+        <ion-input
+          placeholder="enmarcm"
+          [(ngModel)]="userName"
+        ></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Email</label>
+        <ion-input
+          placeholder="theenmanuel123@gmail.com"
+          type="email"
+          [(ngModel)]="email"
+        ></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Contraseña</label>
+        <ion-input
+          type="password"
+          placeholder="NeverGonnaGiveYouUp"
+          [(ngModel)]="password"
+          [value]="password"
+        >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Fecha de nacimiento</label>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetime"
+              presentation="date"
+              [(ngModel)]="dateOfBirth"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <h2>Que deseas hacer?</h2>
+        </ion-col>
+      </ion-row>
+
+      @if(renderingArtist){
+      <ion-row>
+        <ion-button [routerLink]="['/upload']">
+          Subir canción
+        </ion-button>
+      </ion-row>
+      }
+
+      <ion-row>
+        <ion-button (click)="handleCLickUpdate()">
+          Actualizar información
+        </ion-button>
+      </ion-row>
+
+      <ion-row>
+        <ion-button (click)="deleteAccount()">
+          Eliminar cuenta
+        </ion-button>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

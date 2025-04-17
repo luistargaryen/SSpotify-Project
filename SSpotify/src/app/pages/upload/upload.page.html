@@ -5,9 +5,66 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">upload</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-card>
+          <img [src]="urlImage"/>
+          <ion-card-header>
+            <ion-card-title>{{songName}}</ion-card-title>
+            <ion-card-subtitle>{{albumName}}</ion-card-subtitle>
+            <ion-card-subtitle>{{duration}} ms</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-row>
+
+      <ion-row>
+        <label>Nombre de la cancion</label>
+        <ion-input
+          placeholder="New Song"
+          color="success"
+          [(ngModel)]="songName"
+        ></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <label>Album de la canción</label>
+        <ion-input
+          placeholder="Los Avengers"
+          color="success"
+          [(ngModel)]="albumName"
+        ></ion-input>
+      </ion-row>
+
+      <!-- Input para imagen -->
+      <ion-row>
+        <label>Imagen de la canción</label>
+        <input
+          type="file"
+          (change)="onFileSelectedImage($event)"
+          accept="image/*"
+          name="fileImage"
+        />
+      </ion-row>
+
+      <!-- Input para archivo MP3 -->
+      <ion-row>
+        <label>Archivo MP3 de la canción</label>
+        <input
+          type="file"
+          (change)="onFileSelectedSong($event)"
+          accept="audio/mp3"
+          name="fileSong"
+        />
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-button shape="round" color="success" (click)="uploadSong()"
+            >Subir canción</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
